@@ -35,6 +35,25 @@ const renderHeading = (ctx, text, x, y) => {
   ctx.fillText(text, x, y);
 };
 
+const renderText = (ctx, text, x, y) => {
+  ctx.fillStyle = `black`;
+  ctx.fillText(text, x, y);
+};
+
+const renderBar = (ctx, x, y, width, height, name) => {
+  if (name === PLAYER) {
+    ctx.fillStyle = YOUR_COLOR;
+  } else {
+    ctx.fillStyle = getRandomColor();
+  }
+
+  ctx.save();
+  ctx.translate(CLOUD_HEIGHT, CLOUD_HEIGHT);
+  ctx.rotate(-Math.PI);
+  ctx.fillRect(x, y, width, height);
+  ctx.restore();
+};
+
 const getMaxElement = (arr) => {
   let maxElement = arr[0];
 
@@ -58,20 +77,10 @@ window.renderStatistics = (ctx, names, times) => {
 
 
   for (let i = 0; i < names.length; i++) {
-    ctx.fillStyle = `black`;
-    ctx.fillText(names[i], CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - CLOUD_Y);
+    renderText(ctx, names[i], CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - CLOUD_Y);
 
-    ctx.fillText(Math.round(times[i]), CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, (BAR_HEIGHT * times[i]) / maxTime);
+    renderText(ctx, Math.round(times[i]), CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, (BAR_HEIGHT * times[i]) / maxTime);
 
-    if (names[i] === PLAYER) {
-      ctx.fillStyle = YOUR_COLOR;
-    } else {
-      ctx.fillStyle = getRandomColor();
-    }
-    ctx.save();
-    ctx.translate(CLOUD_HEIGHT, CLOUD_HEIGHT);
-    ctx.rotate(-Math.PI);
-    ctx.fillRect(CLOUD_X - TEXT_WIDTH - (GAP + BAR_WIDTH) * i, CLOUD_Y + TEXT_WIDTH, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime);
-    ctx.restore();
+    renderBar(ctx, CLOUD_X - TEXT_WIDTH - (GAP + BAR_WIDTH) * i, CLOUD_Y + TEXT_WIDTH, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime, names[i]);
   }
 };
