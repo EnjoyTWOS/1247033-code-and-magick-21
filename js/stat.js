@@ -28,6 +28,12 @@ const renderCloud = (ctx, x, y, color) => {
   ctx.fillRect(x, y, CLOUD_WIDTH, CLOUD_HEIGHT);
 };
 
+const renderHeading = (ctx, text, x, y) => {
+  ctx.fillStyle = `black`;
+  ctx.font = `16px PT Mono`;
+  ctx.textBaseline = `hanging`;
+  ctx.fillText(text, x, y);
+};
 
 const getMaxElement = (arr) => {
   let maxElement = arr[0];
@@ -45,11 +51,8 @@ window.renderStatistics = (ctx, names, times) => {
   renderCloud(ctx, CLOUD_X + CLOUD_GAP, CLOUD_Y + CLOUD_GAP, SHADOW_COLOR);
   renderCloud(ctx, CLOUD_X, CLOUD_Y, CLOUD_COLOR);
 
-  ctx.fillStyle = `black`;
-  ctx.font = `16px PT Mono`;
-  ctx.textBaseline = `hanging`;
-  ctx.fillText(`Ура вы победили!`, CLOUD_X + TEXT_WIDTH, GAP - TEXT_WIDTH);
-  ctx.fillText(`Список результатов:`, CLOUD_X + TEXT_WIDTH, GAP);
+  renderHeading(ctx, `Ура вы победили!`, CLOUD_X + TEXT_WIDTH, GAP - TEXT_WIDTH);
+  renderHeading(ctx, `Список результатов:`, CLOUD_X + TEXT_WIDTH, GAP);
 
   const maxTime = getMaxElement(times);
 
