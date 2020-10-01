@@ -78,9 +78,8 @@ window.renderStatistics = (ctx, names, times) => {
 
   for (let i = 0; i < names.length; i++) {
     renderText(ctx, names[i], CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - CLOUD_Y);
-
-    renderText(ctx, Math.round(times[i]), CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, (BAR_HEIGHT * times[i]) / maxTime);
-
     renderBar(ctx, CLOUD_X - TEXT_WIDTH - (GAP + BAR_WIDTH) * i, CLOUD_Y + TEXT_WIDTH, BAR_WIDTH, (BAR_HEIGHT * times[i]) / maxTime, names[i]);
+    renderText(ctx, Math.round(times[i]), CLOUD_X + GAP + (GAP + BAR_WIDTH) * i, CLOUD_HEIGHT - GAP - ((BAR_HEIGHT * times[i]) / maxTime));
+
   }
 };
