@@ -6,6 +6,8 @@ const COAT_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 1
 const EYES_COLORS = [`black`, `red`, `blue`, `yellow`, `green`];
 const FIREBALL_COLORS = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
 const WIZARDS_QUANTITY = 4;
+const ENTER_KEY = `Enter`;
+const ESCAPE_KEY = `Escape`;
 const wizards = [];
 const fragment = document.createDocumentFragment();
 const userDialogTemplate = document.querySelector(`.setup`);
@@ -26,7 +28,7 @@ const onUserDialogTemplateEscPress = (evt) => {
   if (nameFormTemplate === document.activeElement) {
     return;
   } else {
-    if (evt.key === `Escape`) {
+    if (evt.key === ESCAPE_KEY) {
       evt.preventDefault();
       closeUserDialogTemplate();
     }
@@ -49,7 +51,7 @@ userDialogTemplateOpen.addEventListener(`click`, function () {
 });
 
 userDialogTemplateOpen.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Enter`) {
+  if (evt.key === ENTER_KEY) {
     showUserDialogTemplate();
   }
 });
@@ -59,7 +61,7 @@ userDialogTemplateClose.addEventListener(`click`, function () {
 });
 
 userDialogTemplateClose.addEventListener(`keydown`, function (evt) {
-  if (evt.key === `Enter`) {
+  if (evt.key === ENTER_KEY) {
     closeUserDialogTemplate();
   }
 });
