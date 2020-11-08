@@ -42,7 +42,6 @@ const showUserDialogTemplate = () => {
 
 const closeUserDialogTemplate = () => {
   userDialogTemplate.classList.add(`hidden`);
-
   document.removeEventListener(`keydown`, onUserDialogTemplateEscPress);
 };
 
@@ -90,17 +89,9 @@ const getFireballColor = () => {
   fireballInputElement.value = getRandomArrI(FIREBALL_COLORS);
 };
 
-wizardCoatElement.addEventListener(`click`, function () {
-  getCoatColor();
-});
-
-wizardEyesElement.addEventListener(`click`, function () {
-  getEyesColor();
-});
-
-fireballElement.addEventListener(`click`, function () {
-  getFireballColor();
-});
+wizardCoatElement.addEventListener(`click`, getCoatColor);
+wizardEyesElement.addEventListener(`click`, getEyesColor);
+fireballElement.addEventListener(`click`, getFireballColor);
 
 const renderWizardsArr = () => {
   for (let i = 0; i < WIZARDS_QUANTITY; i++) {
