@@ -3,14 +3,16 @@
 (function () {
   const USER_DIALOG_TEMPLATE_TOP_DEFAULT = 80;
   const USER_DIALOG_TEMPLATE_LEFT_DEFAULT = 650;
+  const FIREBALL_COLORS = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
+  const setupWizardTemplate = document.querySelector(`.setup-wizard`);
   const userDialogTemplateOpen = document.querySelector(`.setup-open`);
   const userDialogTemplateClose = window.setup.userDialogTemplate.querySelector(`.setup-close`);
   const fireballElement = document.querySelector(`.setup-fireball-wrap`);
   const fireballInputElement = document.querySelector(`.fireball-input`);
   const eyesColorInputElement = document.querySelector(`.eyes-color-input`);
   const coatColorInputElement = document.querySelector(`.coat-color-input`);
-  const wizardCoatElement = window.setup.setupWizardTemplate.querySelector(`.wizard-coat`);
-  const wizardEyesElement = window.setup.setupWizardTemplate.querySelector(`.wizard-eyes`);
+  const wizardCoatElement = setupWizardTemplate.querySelector(`.wizard-coat`);
+  const wizardEyesElement = setupWizardTemplate.querySelector(`.wizard-eyes`);
   const nameFormTemplate = document.querySelector(`.setup-user-name`);
   const dialogHandle = window.setup.userDialogTemplate.querySelector(`.upload`);
 
@@ -114,7 +116,7 @@
 
   window.util.colorize(wizardCoatElement, window.setup.COAT_COLORS, coatColorInputElement);
   window.util.colorize(wizardEyesElement, window.setup.EYES_COLORS, eyesColorInputElement);
-  window.util.colorize(fireballElement, window.setup.FIREBALL_COLORS, fireballInputElement);
+  window.util.colorize(fireballElement, FIREBALL_COLORS, fireballInputElement);
 
   init();
 
