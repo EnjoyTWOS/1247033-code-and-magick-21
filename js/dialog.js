@@ -1,6 +1,8 @@
 'use strict';
 
 (function () {
+  const COAT_COLORS = [`rgb(101, 137, 164)`, `rgb(241, 43, 107)`, `rgb(146, 100, 161)`, `rgb(56, 159, 117)`, `rgb(215, 210, 55)`, `rgb(0, 0, 0)`];
+  const EYES_COLORS = [`black`, `red`, `blue`, `yellow`, `green`];
   const USER_DIALOG_TEMPLATE_TOP_DEFAULT = 80;
   const USER_DIALOG_TEMPLATE_LEFT_DEFAULT = 650;
   const FIREBALL_COLORS = [`#ee4830`, `#30a8ee`, `#5ce6c0`, `#e848d5`, `#e6e848`];
@@ -17,7 +19,6 @@
   const dialogHandle = window.setup.userDialogTemplate.querySelector(`.upload`);
 
   const init = () => {
-    showWizardsTemplate();
     showUserDialogTemplate();
   };
 
@@ -73,14 +74,10 @@
       document.removeEventListener(`mouseup`, onMouseUp);
     };
 
-    const toDefault = () => {
-      window.setup.userDialogTemplate.style.top = USER_DIALOG_TEMPLATE_TOP_DEFAULT + `px`;
-      window.setup.userDialogTemplate.style.left = USER_DIALOG_TEMPLATE_LEFT_DEFAULT + `px`;
-    };
 
     document.addEventListener(`mousemove`, onMouseMove);
     document.addEventListener(`mouseup`, onMouseUp);
-    userDialogTemplateClose.addEventListener(`click`, toDefault);
+    userDialogTemplateClose.addEventListener(`click`, window.dialog.toDefault);
   });
 
   const showUserDialogTemplate = () => {
@@ -110,14 +107,17 @@
     window.util.isEnterEvent(evt, closeUserDialogTemplate);
   });
 
-  const showWizardsTemplate = () => {
-    window.setup.userDialogTemplate.querySelector(`.setup-similar`).classList.remove(`hidden`);
-  };
-
-  window.util.colorize(wizardCoatElement, window.setup.COAT_COLORS, coatColorInputElement);
-  window.util.colorize(wizardEyesElement, window.setup.EYES_COLORS, eyesColorInputElement);
+  window.util.colorize(wizardCoatElement, COAT_COLORS, coatColorInputElement);
+  window.util.colorize(wizardEyesElement, EYES_COLORS, eyesColorInputElement);
   window.util.colorize(fireballElement, FIREBALL_COLORS, fireballInputElement);
 
   init();
+
+  window.dialog = {
+    toDefault() {
+      window.setup.userDialogTemplate.style.top = USER_DIALOG_TEMPLATE_TOP_DEFAULT + `px`;
+      window.setup.userDialogTemplate.style.left = USER_DIALOG_TEMPLATE_LEFT_DEFAULT + `px`;
+    }
+  };
 
 })();
